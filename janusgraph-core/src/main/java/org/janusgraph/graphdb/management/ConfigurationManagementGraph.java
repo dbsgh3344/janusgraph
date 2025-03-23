@@ -58,7 +58,7 @@ public class ConfigurationManagementGraph {
     private static ConfigurationManagementGraph instance = null;
     public static final String PROPERTY_GRAPH_NAME = GraphDatabaseConfiguration.GRAPH_NAME.toStringWithoutRoot();
     public static final String PROPERTY_CREATED_USING_TEMPLATE = "Created_Using_Template";
-    private static final String VERTEX_LABEL = "Configuration";
+    public static final String VERTEX_LABEL = "Configuration";
     private static final String GRAPH_NAME_INDEX = "Graph_Name_Index";
     private static final String PROPERTY_TEMPLATE = "Template_Configuration";
     private static final String TEMPLATE_INDEX = "Template_Index";

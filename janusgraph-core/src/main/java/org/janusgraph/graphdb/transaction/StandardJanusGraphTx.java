@@ -146,6 +146,7 @@ import org.janusgraph.graphdb.util.VertexCentricEdgeIterable;
 import org.janusgraph.graphdb.vertices.CacheVertex;
 import org.janusgraph.graphdb.vertices.PreloadedVertex;
 import org.janusgraph.graphdb.vertices.StandardVertex;
+import org.janusgraph.graphdb.management.ConfigurationManagementGraph;
 import org.janusgraph.util.IDUtils;
 import org.janusgraph.util.datastructures.Retriever;
 import org.janusgraph.util.stats.MetricManager;
@@ -638,7 +639,7 @@ public class StandardJanusGraphTx extends JanusGraphBlueprintsTransaction implem
             log.info("Provided vertex id [{}] is ignored because vertex id setting is not enabled", vertexId);
             vertexId = null;
         }
-        Preconditions.checkArgument(vertexId != null || !graph.getConfiguration().allowVertexIdSetting(), "Must provide vertex id");
+        Preconditions.checkArgument(vertexId != null || !graph.getConfiguration().allowVertexIdSetting() || label.toString().equals(ConfigurationManagementGraph.VERTEX_LABEL)  , "Must provide vertex id");
         Preconditions.checkArgument(vertexId == null || IDManager.VertexIDType.NormalVertex.is(vertexId), "Not a valid vertex id: %s", vertexId);
         Preconditions.checkArgument(vertexId == null || ((InternalVertexLabel)label).hasDefaultConfiguration(), "Cannot only use default vertex labels: %s",label);
         Preconditions.checkArgument(vertexId == null || !config.hasVerifyExternalVertexExistence() || !containsVertex(vertexId), "Vertex with given id already exists: %s", vertexId);
